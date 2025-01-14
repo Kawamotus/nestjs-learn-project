@@ -1,0 +1,67 @@
+@baseUrl = http://localhost:3000
+
+### Route to get all messages
+# @name AppMessagesFindAll
+GET {{baseUrl}}/messages/
+?limit=5
+&offset=0
+
+### Route to get one message (sending id)
+# @name AppMessagesFindOne
+GET {{baseUrl}}/messages/18
+
+### Route to post message data
+# @name AppMessagesPost
+POST {{baseUrl}}/messages
+Content-Type: application/json
+
+{
+    "text": "de kawamoto para gustavo",
+    "fromId": 17,
+    "toId": 16
+}
+
+### Route to update message data
+# @name AppMessagesUpdate
+PATCH {{baseUrl}}/messages/18
+Content-Type: application/json
+
+{
+    "text": "updated this message",
+    "read": false
+}
+
+### route to delete by param id
+# @name AppMessagesDelete
+DELETE {{baseUrl}}/messages/2
+
+
+# Person
+
+### Route to get All people
+# @name AppMessageGetAllPeople
+GET {{baseUrl}}/people
+
+### Route to create new person
+# @name AppMessagesPostPeople
+POST {{baseUrl}}/people
+Content-Type: application/json
+
+{
+    "email": "gustavok@email.com",
+    "password": "12345678",
+    "name": "g Kawamoto"
+}
+
+### Route to find and update people
+# @name AppMessageUpdatePeople
+PATCH {{baseUrl}}/people/11
+Content-Type: application/json
+
+{
+    "name": "Gustavo K"
+}
+
+### route to delete by param id
+# @name AppMessagesDelete
+DELETE {{baseUrl}}/people/11
