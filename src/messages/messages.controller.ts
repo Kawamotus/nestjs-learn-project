@@ -21,11 +21,14 @@ export class MessagesController {
   constructor(private readonly messagesService: MessagesService) {}
 
   // returns all messages
+  //@UseInterceptors(TimingConnectionInterceptor, ErrorHandlingInterceptor)
   @Get()
   findAll(@Query() pagination: PaginationDTO) {
     return this.messagesService.findAll(pagination);
   }
 
+  //adiciona o interceptor na requisição
+  //@UseInterceptors(AddHeaderInterceptor, ErrorHandlingInterceptor)
   // returns message with specified id
   // (:something/:thing)
   @Get(':id')
