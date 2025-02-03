@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   Body,
   Controller,
   Delete,
@@ -31,7 +32,9 @@ export class MessagesController {
   //                                          utilizando esse decorator com a request do express, é possível recuperar o req que pode ser definido no middleware
   findAll(@Query() pagination: PaginationDTO, @Req() req: Request) {
     console.log(req['user']);
-    return this.messagesService.findAll(pagination);
+
+    throw new BadRequestException('Coisinha');
+    // return this.messagesService.findAll(pagination);
   }
 
   //adiciona o interceptor na requisição
