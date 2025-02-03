@@ -5,6 +5,7 @@
 GET {{baseUrl}}/messages/
 ?limit=5
 &offset=0
+Authorization: Bearer token
 
 ### Route to get one message (sending id)
 # @name AppMessagesFindOne
@@ -21,7 +22,7 @@ Content-Type: application/json
     "toId": 16
 }
 
-### Route to update message data
+### Route to update message data  
 # @name AppMessagesUpdate
 PATCH {{baseUrl}}/messages/18
 Content-Type: application/json
