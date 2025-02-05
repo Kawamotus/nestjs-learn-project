@@ -1,17 +1,9 @@
-import {
-  MiddlewareConsumer,
-  Module,
-  NestModule,
-  RequestMethod,
-} from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MessagesModule } from 'src/messages/messages.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PeopleModule } from 'src/people/people.module';
-import { SimpleMiddleware } from 'src/common/middlewares/simple.middleware';
-import { APP_FILTER } from '@nestjs/core';
-import { MyExceptionFilter } from 'src/common/filters/my-exception.filter';
 
 @Module({
   imports: [
@@ -31,17 +23,14 @@ import { MyExceptionFilter } from 'src/common/filters/my-exception.filter';
   controllers: [AppController],
   providers: [
     AppService,
-    {
-      provide: APP_FILTER,
-      useClass: MyExceptionFilter,
-    },
+    // {
+    //   provide: APP_FILTER,
+    //   useClass: MyExceptionFilter,
+    // },
+    // {
+    //   provide: APP_GUARD,
+    //   useClass: IsAdminGuard,
+    // },
   ],
 })
-export class AppModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer
-      //é possivel adicionar outro middleware com virgulas ou criando outro consumer, a ordem importa
-      .apply(SimpleMiddleware)
-      .forRoutes({ path: '*', method: RequestMethod.ALL });
-  }
-}
+export class AppModule {}

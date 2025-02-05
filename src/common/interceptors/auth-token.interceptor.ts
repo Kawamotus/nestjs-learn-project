@@ -11,8 +11,6 @@ export class AuthTokenInterceptor implements NestInterceptor {
     const request = context.switchToHttp().getRequest();
     const token = request.headers.authorization?.split(' ')[1];
 
-    console.log(token);
-
     return next.handle();
   }
 }

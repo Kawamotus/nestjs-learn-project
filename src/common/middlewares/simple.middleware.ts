@@ -5,12 +5,9 @@ import { NextFunction, Request, Response } from 'express';
 //ele acessa de maneira mais "crua" a req e res
 export class SimpleMiddleware implements NestMiddleware {
   use(req: Request, res: Response, next: NextFunction) {
-    console.log('Bateu aqui');
-
     const authorization = req.headers?.authorization;
 
     if (authorization) {
-      console.log(authorization);
       req['user'] = {
         nome: 'teste',
         why: 'recuperado com sucesso',
@@ -27,8 +24,6 @@ export class SimpleMiddleware implements NestMiddleware {
     //é possível executar algo aqui, mas seria executado após o(s) proximo(s) middleware(s)
 
     //o res.on() pode executar coisas após passar pelo controller e todo o resto
-    res.on('finish', () => {
-      console.log('Fim da conexao');
-    });
+    res.on('finish', () => {});
   }
 }
