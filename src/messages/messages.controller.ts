@@ -15,6 +15,7 @@ import { CreateMessageDTO } from './dto/create-message.dto';
 import { UpdateMessageDTO } from './dto/update-message.dto';
 import { PaginationDTO } from 'src/common/dto/pagination.dto';
 import { ParseIntIdPipe } from 'src/common/pipes/parse-int-id.pipe';
+import { ReqData } from 'src/common/params/req-data-param.decorator';
 @Controller('messages')
 export class MessagesController {
   constructor(private readonly messagesService: MessagesService) {}
@@ -24,7 +25,8 @@ export class MessagesController {
   @Get()
   //                                          utilizando esse decorator com a request do express, é possível recuperar o req que pode ser definido no middleware
   //findAll(@Query() pagination: PaginationDTO, @Req() req: Request) {
-  findAll(@Query() pagination: PaginationDTO) {
+  findAll(@Query() pagination: PaginationDTO, @ReqData('headers') param) {
+    console.log(param);
     return this.messagesService.findAll(pagination);
   }
 
